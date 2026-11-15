@@ -42,7 +42,7 @@ Source: https://archive.ics.uci.edu/dataset/320/student+performance
 - [x] Phase 1: Dataset Understanding and Initial EDA
 - [x] Phase 2: Data Preprocessing and Feature Selection
 - [x] Phase 3: Traditional ML Models
-- [ ] Phase 4: Deep Neural Network
-- [ ] Phase 5: Hyperparameter Tuning
-- [ ] Phase 6: Model Evaluation
+- [x] Phase 4: Deep Neural Network
+- [x] Phase 5: Hyperparameter Tuning
+- [x] Phase 6: Model Evaluation
 - [ ] Phase 7: Streamlit Deployment
