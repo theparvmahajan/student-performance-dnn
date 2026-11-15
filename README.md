@@ -40,7 +40,7 @@ Source: https://archive.ics.uci.edu/dataset/320/student+performance
 ## Project Status
 
 - [x] Phase 1: Dataset Understanding and Initial EDA
-- [ ] Phase 2: Data Preprocessing and Feature Selection
+- [x] Phase 2: Data Preprocessing and Feature Selection
 - [ ] Phase 3: Traditional ML Models
 - [ ] Phase 4: Deep Neural Network
 - [ ] Phase 5: Hyperparameter Tuning
