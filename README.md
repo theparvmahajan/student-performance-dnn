@@ -1,48 +1,194 @@
 # Student Academic Performance Prediction Using Deep Neural Networks
 
-## Overview
+A machine learning project that predicts students' academic performance using the UCI Student Performance dataset. The project implements a Deep Neural Network (DNN), compares it against Logistic Regression, and provides an interactive Streamlit application.
 
-This project aims to predict students' final academic performance using demographic, academic, social, and behavioural attributes.
+## Project Overview
 
-A Deep Neural Network (DNN) built using TensorFlow/Keras will be developed and compared with traditional Machine Learning algorithms.
+The objective is to classify students into four academic performance categories based on demographic, family, academic, and lifestyle information.
+
+Two prediction scenarios are implemented:
+
+- **Early Prediction:** Predicts student performance without using previous period grades (G1 and G2).
+- **Late Prediction:** Predicts student performance using previous period grades (G1 and G2).
 
 ## Dataset
 
-UCI Student Performance Dataset
+- **Source:** UCI Student Performance Dataset
+- **Dataset:** Portuguese language student records (`student-por.csv`)
+- **Total Records:** 649
+- **Original Features:** 32 input features
+- **Target:** Final grade (G3)
 
-- Dataset: Portuguese student records
-- Records: 649
-- Target variable: G3 (final grade)
+### Performance Categories
 
-Source: https://archive.ics.uci.edu/dataset/320/student+performance
+| Final Grade (G3) | Category |
+|---|---|
+| 0–9 | Poor |
+| 10–13 | Average |
+| 14–16 | Good |
+| 17–20 | Excellent |
 
-## Technologies
+## Data Preprocessing
+
+- Separated numerical and categorical features.
+- Applied StandardScaler to numerical features.
+- Applied OneHotEncoder to categorical features.
+- Encoded target classes.
+- Created separate early and late prediction datasets.
+- Used stratified train-validation-test splitting.
+
+### Dataset Split
+
+| Split | Records | Percentage |
+|---|---:|---:|
+| Training | 454 | 70% |
+| Validation | 97 | 15% |
+| Testing | 98 | 15% |
+
+The same student records were used across both prediction scenarios to ensure a fair comparison.
+
+## Models
+
+### 1. Logistic Regression
+
+Used as the traditional machine learning baseline for both prediction scenarios.
+
+### 2. Deep Neural Network
+
+Architecture:
+
+- Input Layer
+- Dense Layer: 64 neurons, ReLU
+- Dropout: 0.3
+- Dense Layer: 32 neurons, ReLU
+- Dropout: 0.2
+- Output Layer: 4 neurons, Softmax
+
+**Training Configuration:**
+
+- Optimizer: Adam
+- Learning Rate: 0.001
+- Loss Function: Sparse Categorical Crossentropy
+- Batch Size: 16
+- Maximum Epochs: 100
+- Early Stopping: Patience of 10 epochs
+
+## Model Evaluation
+
+Models were evaluated on the independent test dataset using Accuracy and Macro F1.
+
+| Model | Scenario | Accuracy | Macro F1 |
+|---|---|---:|---:|
+| Logistic Regression | Early | 53.06% | 0.3596 |
+| Logistic Regression | Late | 76.53% | 0.6790 |
+| DNN | Early | 52.04% | 0.2977 |
+| DNN | Late | 72.45% | 0.6623 |
+
+### Key Observations
+
+- Late prediction achieved better performance than early prediction for both models.
+- Previous academic grades (G1 and G2) provide useful predictive information.
+- Logistic Regression outperformed the DNN in both test scenarios.
+- The results demonstrate that a simpler machine learning model can outperform a neural network on a relatively small dataset.
+
+## Streamlit Application
+
+The project includes an interactive Streamlit application that allows users to:
+
+- Select early or late prediction.
+- Enter student demographic and academic information.
+- Generate academic performance predictions.
+- View one of four predicted categories: Poor, Average, Good, or Excellent.
+
+## Project Structure
+
+```text
+Student-Performance-DNN/
+│
+├── data/
+│   └── student-por.csv
+│
+├── models/
+│   ├── dnn_early.keras
+│   ├── dnn_late.keras
+│   ├── preprocessor_early.pkl
+│   ├── preprocessor_late.pkl
+│   ├── label_encoder.pkl
+│   └── final_model_comparison.csv
+│
+├── notebooks/
+│   ├── 01_eda.ipynb
+│   ├── 02_preprocessing.ipynb
+│   ├── 03_logistic_regression.ipynb
+│   ├── 04_dnn_model.ipynb
+│   ├── 05_model_comparison.ipynb
+│   ├── 06_hyperparameter_tuning.ipynb
+│   └── 07_final_evaluation.ipynb
+│
+├── app.py
+├── requirements.txt
+└── README.md
+```
+
+## Installation and Usage
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/theparvmahajan/student-performance-dnn.git
+cd student-performance-dnn
+```
+
+### 2. Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+Activate it:
+
+**Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the application
+
+```bash
+streamlit run app.py
+```
+
+The application will open in your browser.
+
+## Technologies Used
 
 - Python
-- Pandas, NumPy
-- Matplotlib, Seaborn
+- NumPy
+- Pandas
+- Matplotlib
+- Seaborn
 - Scikit-learn
-- TensorFlow/Keras
+- TensorFlow / Keras
 - Streamlit
+- Jupyter Notebook
 
-## Project Workflow
+## Limitations
 
-1. Data collection and understanding
-2. Exploratory Data Analysis
-3. Data preprocessing
-4. Feature selection
-5. Traditional ML model development
-6. DNN architecture development
-7. Hyperparameter tuning
-8. Model evaluation and comparison
-9. Streamlit application development
+- The dataset contains 649 student records.
+- The dataset represents students from Portuguese schools and may not generalize to other educational systems.
+- The target categories are created by grouping final grades into four classes.
+- Predictions are estimates and should not be treated as definitive assessments of student ability.
 
-## Project Status
+## Author
 
-- [x] Phase 1: Dataset Understanding and Initial EDA
-- [x] Phase 2: Data Preprocessing and Feature Selection
-- [x] Phase 3: Traditional ML Models
-- [x] Phase 4: Deep Neural Network
-- [x] Phase 5: Hyperparameter Tuning
-- [x] Phase 6: Model Evaluation
-- [ ] Phase 7: Streamlit Deployment
+**Parv Mahajan**
+
+GitHub: https://github.com/theparvmahajan
+
