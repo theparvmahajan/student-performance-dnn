@@ -181,9 +181,7 @@ The application will open in your browser.
 
 ## Limitations
 
-- The dataset contains 649 student records.
 - The dataset represents students from Portuguese schools and may not generalize to other educational systems.
-- The target categories are created by grouping final grades into four classes.
 - Predictions are estimates and should not be treated as definitive assessments of student ability.
 
 ## Author
