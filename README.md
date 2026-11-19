@@ -66,7 +66,7 @@ Architecture:
 
 **Training Configuration:**
 
-- Optimizer: Adam
+- Optimizer: Adam Optimizer
 - Learning Rate: 0.001
 - Loss Function: Sparse Categorical Crossentropy
 - Batch Size: 16
